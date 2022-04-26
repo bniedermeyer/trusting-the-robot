@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/lib-2",
+  "sourceRoot": "libs/lib-2/src",
+  "prefix": "semantic-release-demo",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": [
+        "dist/libs/lib-2"
+      ],
+      "options": {
+        "project": "libs/lib-2/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/lib-2/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/lib-2/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/lib-2/**/*.ts",
+          "libs/lib-2/**/*.html"
+        ]
+      }
+    },
+    "release": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npx semantic-release -e ./libs/lib-2/.releaserc.json"
+      }
+    }
+  },
+  "tags": []
+}

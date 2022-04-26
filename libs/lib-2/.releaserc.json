@@ -1,0 +1,13 @@
+{
+  "extends": "../../.releaserc.json",
+  "tagFormat": "lib-2-v${version}",
+  "plugins": [
+    ["@abgov/nx-release", {
+      "project": "lib-2"
+    }],
+    ["@semantic-release/npm", {
+      "pkgRoot": "dist/libs/lib-2"
+    }],
+    "@semantic-release/github"
+  ]
+}

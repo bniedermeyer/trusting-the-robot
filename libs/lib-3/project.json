@@ -1,0 +1,36 @@
+{
+  "projectType": "library",
+  "root": "libs/lib-3",
+  "sourceRoot": "libs/lib-3/src",
+  "prefix": "semantic-release-demo",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": [
+        "dist/libs/lib-3"
+      ],
+      "options": {
+        "project": "libs/lib-3/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/lib-3/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/lib-3/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/lib-3/**/*.ts",
+          "libs/lib-3/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
