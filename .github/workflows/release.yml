@@ -1,0 +1,33 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+      - next
+      - 1.x.x
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - name: Install dependencies
+        run: npm ci
+      - name: Build Package
+        run: npm run build
+      - name: Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # needed to authenticate with npm to publish
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # disable husky commit hooks
+          HUSKY: 0
+        run: npx semantic-release
